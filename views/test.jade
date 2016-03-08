@@ -1,0 +1,7 @@
+extends layout
+
+block content
+    ul
+        for file, i in theFiles
+            li #{file.filename} is at position #{i} 
+                a(href="/deleteFile/#{file._id}") delete

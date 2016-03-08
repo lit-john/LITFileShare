@@ -1,0 +1,6 @@
+extends layout
+
+block content
+    form(method='POST', action='/uploadFile', enctype='multipart/form-data')
+        input(type='file', name='theFile')
+        input(type='submit', value='Upload')
