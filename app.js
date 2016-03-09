@@ -12,6 +12,10 @@ var app = express();
 
 var multer = require('multer');
 
+
+/* 
+ *    Setting up the storage method.
+ */
 var storageMethod = multer.diskStorage({
     destination: function (req, file, cb) {
         console.log("In destination");
@@ -46,6 +50,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+/*
+ * Requests for /<anything> are going to be routed through
+ * the multer middlerware (which we set up using the storage 
+ * method we defined above). The .any() means we are happy to
+ * accept file uploads from any file input fields (as opposed
+ * to naming the fields we are happy to accept from). For 
+ * more information check out https://github.com/expressjs/multer
+ * 
+ * It is important that we set up the multer middleware before we
+ * ask for all /<anything> requests to be routed to 'routes'.
+ */
 app.use('/',multer({storage: storageMethod}).any());
 app.use('/', routes);
 

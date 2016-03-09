@@ -3,6 +3,7 @@ var fs = require('fs');
 var router = express.Router();
 
 // Temporary global variable
+console.log("Creating the files array");
 var files = new Array();
 
 /* GET home page. */
